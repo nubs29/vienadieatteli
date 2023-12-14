@@ -5,25 +5,54 @@ from tkinter import messagebox
 gamewindow = Tk()
 gamewindow.title("Vienādie attēli")
 
+count = 0
+correctAnswer = 0
+answers = []
+answer_dict = {}
+
+def btnClick(btn, number):
+    global count, correctAnswers, answers, answer_dict
+    if btn["image"] == "pyImage6" and count < 2:
+        btn["image"] = ImageList[number]
+        count +- 1
+        answers.append(number)
+        answer_dict[btn] = ImageList(number)
+    if len(answers) == 2:
+        if ImageList[answers[0]] == ImageList[answers[1]]:
+            for key in answer_dict:
+                key ["state"] = DISABLED
+    if correctAnswer == 2:
+        messagebox.showinfo("Vienādie attēli", "Esi uzminējis!")
+    else:
+        messagebox.showinfo("Vienādie attēli", "Neuzminēji!")
+        for key in answer_dict:
+            key["image"] = "pyImage6"
+        count = 0
+        answers = []
+        answer_dict = {}
+    return 0
+
 myImg1 = ImageTk.PhotoImage(Image.open("img1.jpg"))
 myImg2 = ImageTk.PhotoImage(Image.open("img2.jpg"))
 myImg3 = ImageTk.PhotoImage(Image.open("img3.jpg"))
 myImg4 = ImageTk.PhotoImage(Image.open("img4.jpg"))
 myImg5 = ImageTk.PhotoImage(Image.open("img5.jpg"))
-myImg6 = ImageTk.PhotoImage(Image.open("img6.jpg"))
-
+#myImg6 = ImageTk.PhotoImage(Image.open("img6.jpg"))
 bgImg = ImageTk.PhotoImage(Image.open("img7.jpg"))
 
-btn0 = Button(width = 200, height = 300, image = bgImg)
-btn1 = Button(width = 200, height = 300, image = bgImg)
-btn2 = Button(width = 200, height = 300, image = bgImg)
-btn3 = Button(width = 200, height = 300, image = bgImg)
-btn4 = Button(width = 200, height = 300, image = bgImg)
-btn5 = Button(width = 200, height = 300, image = bgImg)
-btn6 = Button(width = 200, height = 300, image = bgImg)
-btn7 = Button(width = 200, height = 300, image = bgImg)
-btn8 = Button(width = 200, height = 300, image = bgImg)
-btn9 = Button(width = 200, height = 300, image = bgImg)
+ImageList = [myImg1, myImg1, myImg2, myImg2, myImg3, myImg3, myImg4, myImg4, myImg5, myImg5]
+random.shuffle(ImageList)
+
+btn0 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn0, 0))
+btn1 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn1, 0))
+btn2 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn2, 0))
+btn3 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn3, 0))
+btn4 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn4, 0))
+btn5 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn5, 0))
+btn6 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn6, 0))
+btn7 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn7, 0))
+btn8 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn8, 0))
+btn9 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn9, 0))
 
 btn0.grid(row = 0, column = 0)
 btn1.grid(row = 0, column = 1)
