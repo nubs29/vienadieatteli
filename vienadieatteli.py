@@ -12,7 +12,7 @@ answer_dict = {}
 
 def btnClick(btn, number):
     global count, correctAnswers, answers, answer_dict
-    if btn["image"] == "pyImage6" and count < 2:
+    if btn["image"] == "pyImage7" and count < 2:
         btn["image"] = ImageList[number]
         count +- 1
         answers.append(number)
@@ -21,16 +21,20 @@ def btnClick(btn, number):
         if ImageList[answers[0]] == ImageList[answers[1]]:
             for key in answer_dict:
                 key ["state"] = DISABLED
-    if correctAnswer == 2:
-        messagebox.showinfo("Vienādie attēli", "Esi uzminējis!")
-    else:
-        messagebox.showinfo("Vienādie attēli", "Neuzminēji!")
-        for key in answer_dict:
-            key["image"] = "pyImage6"
-        count = 0
-        answers = []
-        answer_dict = {}
-    return 0
+                correctAnswer =+ 2
+                if correctAnswer == 2:
+                    messagebox.showinfo("Vienādie attēli", "Esi uzminējis!")
+                    correctAnswer = 0
+                if correctAnswer == 5:
+                    messagebox.askquestion("Vienādie attēli", "Tu uzvarēji!", "Tu zaudēji!")
+        else:
+            messagebox.showinfo("Vienādie attēli", "Neuzminēji!")
+            for key in answer_dict:
+                key["image"] = "pyImage7"
+            count = 0
+            answers = []
+            answer_dict = {}
+        return 0
 
 myImg1 = ImageTk.PhotoImage(Image.open("img1.jpg"))
 myImg2 = ImageTk.PhotoImage(Image.open("img2.jpg"))
