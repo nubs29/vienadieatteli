@@ -52,16 +52,16 @@ answerCount = 0
 
 def reset():
     global count, correctAnswer, answers, answer_dict, answerCount
-    btn0.config (status = NORMAL)
-    btn1.config (status = NORMAL)
-    btn2.config (status = NORMAL)
-    btn3.config (status = NORMAL)
-    btn4.config (status = NORMAL)
-    btn5.config (status = NORMAL)
-    btn6.config (status = NORMAL)
-    btn7.config (status = NORMAL)
-    btn8.config (status = NORMAL)
-    btn9.config (status = NORMAL)
+    btn0.config (state = NORMAL)
+    btn1.config (state = NORMAL)
+    btn2.config (state = NORMAL)
+    btn3.config (state = NORMAL)
+    btn4.config (state = NORMAL)
+    btn5.config (state = NORMAL)
+    btn6.config (state = NORMAL)
+    btn7.config (state = NORMAL)
+    btn8.config (state = NORMAL)
+    btn9.config (state = NORMAL)
 
     btn0["image"] = "pyimage6"
     btn1["image"] = "pyimage6"
