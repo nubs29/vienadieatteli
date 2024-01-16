@@ -15,11 +15,11 @@ Img4 = ImageTk.PhotoImage(Image.open("img4.jpg"))
 Img5 = ImageTk.PhotoImage(Image.open("img5.jpg"))
 
 ImageList = [Img1, Img1, Img2, Img2, Img3, Img3, Img4, Img4, Img5, Img5]
-
 myLabel = Label(image = Img1)
 
 bgImg = ImageTk.PhotoImage(Image.open("img6.jpg"))
 
+#pievieno pogas
 btn0 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn0, 0))
 btn1 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn1, 1))
 btn2 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn2, 2))
@@ -31,6 +31,7 @@ btn7 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnCli
 btn8 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn8, 8))
 btn9 = Button(width = 200, height = 300, image = bgImg, command = lambda: btnClick(btn9, 9))
 
+#pogu atrašanās vieta
 btn0.grid(row = 0, column = 0)
 btn1.grid(row = 0, column = 1)
 btn2.grid(row = 0, column = 2)
@@ -42,14 +43,17 @@ btn7.grid(row = 1, column = 2)
 btn8.grid(row = 1, column = 3)
 btn9.grid(row = 1, column = 4)
 
+#sajauc attēlus
 random.shuffle(ImageList)
 
+#mainīgo definēšana
 count = 0
 correctAnswer = 0
 answers = []
 answer_dict = {}
 answerCount = 0
 
+#funkcija, kas atgriež pogas uz sākotnējo stāvokli
 def reset():
     global count, correctAnswer, answers, answer_dict, answerCount
     btn0.config (state = NORMAL)
@@ -73,27 +77,22 @@ def reset():
     btn7["image"] = "pyimage6"
     btn8["image"] = "pyimage6"
 
-    random.shuffle(ImageList)
-
-    count = 0
-    correctAnswer = 0
-    answers = []
-    answer_dict = {}
-    answerCount = 0
-
-#def infologs():
+#funkcija, kas satur informācijas loga saturu
+#def infoLogs():
     #gamewindow = Toplevel()
     #gamewindow.title("Info par programmu")
     #gamewindow.geometry("500x500")
-    #apraksts = 
+    #apraksts = Label(gamewindow, text = "Atmini 2 vienādus attēlus!")
+    
 
+#funkcija, kas apgriež attēlus
 def btnClick(btn, number):
-    global count, correctAnswers, answers, answer_dict
-    if btn["image"] == "pyimage" and count < 2:
+    global count, correctAnswer, answers, answer_dict
+    if btn["image"] == "pyimage6" and count < 2:
         btn["image"] = ImageList[number]
-        count +- 1
+        count += 1
         answers.append(number)
-        answer_dict[btn] = ImageList(number)
+        answer_dict[btn] = ImageList[number]
     if len(answers) == 2:
         if ImageList[answers[0]] == ImageList[answers[1]]:
             for key in answer_dict:
@@ -119,7 +118,7 @@ gamewindow.config(menu = galvenaIzvelne)
 opcijas = Menu(galvenaIzvelne, tearoff = False)
 galvenaIzvelne.add_cascade(label = "Opcijas", menu = opcijas)
 
-opcijas.add_command(label = "Jauna spēle", command = gamewindow.reset)
+opcijas.add_command(label = "Jauna spēle", command = reset)
 opcijas.add_command(label = "Iziet", command = gamewindow.quit)
 
 #galvenaIzvelne.add_command(label = "Par programmu", command = infoLogs)
