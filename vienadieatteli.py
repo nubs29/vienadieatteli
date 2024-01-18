@@ -78,16 +78,19 @@ def reset():
     btn8["image"] = "pyimage6"
 
 #funkcija, kas satur informācijas loga saturu
-#def infoLogs():
-    #gamewindow = Toplevel()
-    #gamewindow.title("Info par programmu")
-    #gamewindow.geometry("500x500")
-    #apraksts = Label(gamewindow, text = "Atmini 2 vienādus attēlus!")
+def infoLogs():
+    gamewindow = Toplevel()
+    gamewindow.title("Info par programmu")
+    gamewindow.geometry("500x500")
+    apraksts = Label(gamewindow, text = "Atmini 2 vienādus attēlus!")
+    apraksts.grid(row=0,column=0)
+    return 0
+
     
 
 #funkcija, kas apgriež attēlus
 def btnClick(btn, number):
-    global count, correctAnswer, answers, answer_dict
+    global count, correctAnswer, answers, answer_dict, answerCount
     if btn["image"] == "pyimage6" and count < 2:
         btn["image"] = ImageList[number]
         count += 1
@@ -99,18 +102,18 @@ def btnClick(btn, number):
                 key ["state"] = DISABLED
             correctAnswer =+ 2
             if correctAnswer == 2:
-                messagebox.showinfo("Vienādie attēli", "Esi uzminējis!")
-                correctAnswer = 0
-                if correctAnswer == 5:
-                    messagebox.askquestion("Vienādie attēli", "Tu uzvarēji!", "Tu zaudēji!")
-            else:
-                messagebox.showinfo("Vienādie attēli", "Neuzminēji!")
-                for key in answer_dict:
-                    key["image"] = "pyimage6"
-            count = 0
-            answers = []
-            answer_dict = {}
-    return 0
+                correctAnswers=0
+                answerCount+=1
+        else:
+            Tk.update(btn)
+            for key in answer_dict:
+                key["image"]="pyimage6"
+        count=0
+        answers=[]
+        answer_dict={}
+    if answerCount==4:
+        messagebox.showinfo("Esi uzvarējis!")
+        reset()
 
 galvenaIzvelne = Menu(gamewindow)
 gamewindow.config(menu = galvenaIzvelne)
@@ -121,7 +124,7 @@ galvenaIzvelne.add_cascade(label = "Opcijas", menu = opcijas)
 opcijas.add_command(label = "Jauna spēle", command = reset)
 opcijas.add_command(label = "Iziet", command = gamewindow.quit)
 
-#galvenaIzvelne.add_command(label = "Par programmu", command = infoLogs)
+galvenaIzvelne.add_command(label = "Par programmu", command = infoLogs)
 
 
 
